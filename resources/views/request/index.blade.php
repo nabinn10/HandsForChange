@@ -13,6 +13,7 @@
         @csrf
 
 
+        <input type="hidden" name="user_id" value="{{Auth::id()}}">
         {{-- request type either money cloth food medicine --}}
         <div class="mt-4">
             <label for="request_type" class="block text-sm font-medium text-gray-700">Request Type</label>

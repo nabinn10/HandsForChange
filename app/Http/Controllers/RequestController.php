@@ -29,13 +29,12 @@ class RequestController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
+            'user_id' => 'required',
             'request_type' => 'required',
             'description' => 'required',
             'document' => 'required|image',
 
         ]);
-
-        dd($data);
 
     //    store this photo in images/request folder
      // Handle file upload
@@ -45,43 +44,39 @@ class RequestController extends Controller
         $photo->move(public_path('images/document/'), $photoname);
         $data['document'] = $photoname;
     }
-
         // create
-        Request::create($data);
-        return redirect()->route('welcome');
-
-
+        RequestModel::create($data);
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(request $request)
-    public function show(RequestModel $request)
+    public function show(request $request){
+
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(request $request)
-    public function edit(RequestModel $request)
+
+    public function edit(Request $request){
         //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, request $request)
-    public function update(Request $request, RequestModel $requestModel)
+    public function update(Request $request, $id){
+
         //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(request $request)
-    public function destroy(RequestModel $request)
+    public function destroy(request $request){
         //
     }
 }
